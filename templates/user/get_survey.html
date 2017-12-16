@@ -1,0 +1,63 @@
+{% extends "user/user_base.html" %}
+{% block title %}QUESTION{% endblock %}
+{% block head %}
+  {{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
+{% endblock %}
+{% block content %}
+
+    <p class="important">
+        {% if session['name'] %}
+
+        <center>
+            <table id="myTable">
+                <h4> YOUR RESPONSE</h4>
+                <hr><br><br>
+
+
+
+        <form action="/user/save_response" method="post">
+            <td>
+                {% for survey in surveys %}
+
+                <b><h3>{{ survey.question }}</a></h3></b>
+                <input type="hidden" class="form-control"  name="question" value="{{ survey.question }}" >
+
+                <p>
+                    <input name="answer" type="radio" id="test2" value="no" required=""/>
+                    <label for="test2">NO</label>
+                </p>
+
+                <p>
+                    <input name="answer" type="radio" id="test1" value="yes" required=""/>
+                    <label for="test1">YES</label>
+                </p>
+
+                <p>
+                    <input class="with-gap" name="answer" type="radio" id="test3" value="other" required=""/>
+                    <label for="test3">OTHER</label>
+                </p>
+
+                    <br><br><br><br><hr>
+                <button type="submit" class="btn btn-success">SUBMIT</button></p>
+                    {% endfor %}
+                </form>
+
+
+                    <br>
+                </td>
+
+            </table><br><br><br><br>
+        </center>
+
+{% else %}
+
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+</p>
+
+{% endblock %}

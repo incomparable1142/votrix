@@ -1,0 +1,29 @@
+{% extends "user/user_base.html" %}
+{% block title %}HOME{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+
+<p class="important">
+
+{% if session['name'] %}Welcome :&emsp;{{session['name']}}
+
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <h2><center> <b>Hello {{session['name']}} your welcome!!</b> </center></h2>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        {% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+
+</p>
+
+{% endblock %}

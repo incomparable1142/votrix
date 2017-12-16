@@ -1,0 +1,53 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}QUESTION RESPONSES{% endblock %}
+{% block head %}
+  {{ super() }}
+
+
+
+{% endblock %}
+{% block content %} 
+
+<p class="important">
+    {% if session['name'] %}
+
+        <center>
+            <h4><p style="color:blue; ">QUESTION RESPONSES</p></h4><br>
+
+            <table class="bordered striped">
+                <thead>
+                    <tr>
+                        <th width="25%">USER ID</th>
+                        <th width="15%">SESSION ID</th>
+                        <th width="25%">QUESTION</th>
+                        <th width="10%">ANSWER</th>
+                        <th width="25%">TIME STAMP</th>
+                    </tr>
+                </thead>
+                    {% for response in responses %}
+                <tbody>
+                    <tr>
+                        <td width="25%"><get_responses?id={{ response._id }}">{{ response._id}}</td>
+                        <td width="15%"><get_responses?id={{ response._id }}">{{ response.email}}</td>
+                        <td width="25%"><get_responses?id={{ response._id }}">{{ response.question}}</td>
+                        <td width="10%"><get_responses?id={{ response._id }}">{{ response.answer}}</td>
+                        <td width="25%"><get_responses?id={{ response._id }}">{{ response.TimeStamp}}</td>
+                    </tr>
+                </tbody>
+
+                {% endfor %}
+            </table>
+        </center>
+
+{% else %}
+
+
+        <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('admin') }}">here</a></p>
+
+        {% include 'admin/session.html' %}
+
+    {% endif %}
+</p>
+
+{% endblock %}

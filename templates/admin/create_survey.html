@@ -1,0 +1,36 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}CREATE QUESTION{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+    {% if session['name'] %}
+
+        <center>
+            <h4><p style="color:blue; ">CREATE QUESTION </p></h4><br><br>
+                <form action="/user/save_survey" method="post">
+
+                    <b>QUESTION :</b> <input type="text" required="" style=" text-transform: uppercase; text-align: center" name="question"  placeholder="--- Please Enter Question --- " size="40" /><br><br>
+
+                    <button type="submit" class="btn btn-success">SUBMIT</button><hr></p>
+
+                </form><br><br><br><br>
+
+        </center>
+
+
+{% else %}
+
+
+        <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('admin') }}">here</a></p>
+
+        {% include 'admin/session.html' %}
+
+    {% endif %}
+</p>
+
+{% endblock %}

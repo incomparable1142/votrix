@@ -1,0 +1,52 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}USERS{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+    {% if session['name'] %}
+
+
+            <center>
+                <h4><p style="color:blue;">USERS</p></h4><br>
+
+    <table class="bordered striped">
+        <thead>
+            <tr>
+                <b><th width="20%">NAME</th></b>
+                <b> <th width="40%">EMAIL ID</th></b>
+                <b> <th width="40%">EMAIL ID</th></b>
+                <!--<b><th width="20%">DETAILS</th></b>-->
+            </tr>
+        </thead>
+
+        {% for user in users %}
+
+        <tbody>
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.contact }}</td>
+                <!--<td><button type="button" value="{{user._id}}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Detail</button>-->
+            </tr>
+        </tbody>
+
+        {% endfor %}
+
+    </table>
+
+
+{% else %}
+
+        <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('admin') }}">here</a></p>
+
+        {% include 'admin/session.html' %}
+
+    {% endif %}
+</p>
+
+{% endblock %}
